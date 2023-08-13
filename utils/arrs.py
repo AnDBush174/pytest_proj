@@ -1,7 +1,7 @@
 """Функции для работы с массивами"""
 
 
-def get(array, index, default=None):
+def get(arr, index, default):
     """
     Извлекает из списка значение по указанному индексу, если индекс существует.
     Если индекс не существует, возвращает значение по умолчанию.
@@ -11,13 +11,13 @@ def get(array, index, default=None):
     :param default: значение по-умолчанию.
     :return: значение по индексу или значение по-умолчанию.
     """
-    if index >= len(array):
+    try:
+        return arr[index]
+    except IndexError:
         return default
 
-    return array[index]
 
-
-def my_slice(coll, start=0, end=None):
+def my_slice(arr, start=None, stop=None):
     """
     Возвращает новый массив, содержащий копию части исходного массива.
     :param coll: исходный список.
@@ -27,19 +27,4 @@ def my_slice(coll, start=0, end=None):
     Если индекс отрицательный, end указывает смещение от конца списка. По умолчанию равен длине исходного списка.
     :return: массив элементов
     """
-    length = len(coll)
-
-    if length == 0:
-        return []
-
-    normalized_end = length if end is None else end
-
-    normalized_start = start
-
-    if normalized_start < 0:
-        if normalized_start < -length:
-            normalized_start = 0
-        else:
-            normalized_start += length
-
-    return coll[normalized_start:normalized_end]
+    return arr[start:stop]
